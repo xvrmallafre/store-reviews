@@ -1,5 +1,5 @@
 {
-    "name": "xvrmallafrer/module-store_reviews",
+    "name": "xvrmallafre/module-store_reviews",
     "description" : "Magento 2 Module to add a reviews page for the store",
     "type": "magento2-module",
     "version": "0.1.0",
