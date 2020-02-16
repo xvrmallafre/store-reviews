@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <!--<section id="store_reviews" translate="label" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Store Reviews</label>
+            <tab>general</tab>
+            <resource>Xvrmallafre_StoreReviews::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" type="select" translate="label,comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>xvrmallafre_storereviews/general/enabled</config_path>
+                    <comment><![CDATA[This field enables the store reviews module.]]></comment>
+                </field>
+                <field id="comments_enabled" type="select" translate="label,comment" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable comments in reviews</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>xvrmallafre_storereviews/general/comments_enabled</config_path>
+                    <comment><![CDATA[This field enables the comments in the store reviews.]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="send_message_days" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Days to send email</label>
+                    <config_path>xvrmallafre_storereviews/general/send_message_days</config_path>
+                    <comment><![CDATA[This field will set the number of days to send the email to the client.]]></comment>
+                    <validate>validate-not-negative-number validate-number</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>-->
+    </system>
+</config>
