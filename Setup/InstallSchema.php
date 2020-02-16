@@ -2,12 +2,14 @@
 
 namespace Xvrmallafre\StoreReviews\Setup;
 
+use Exception;
 use Magento\Framework\DB\Adapter\AdapterInterface;
 use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 use Psr\Log\LoggerInterface;
+use Zend_Db_Expr;
 
 /**
  * Class InstallSchema
@@ -46,7 +48,7 @@ class InstallSchema implements InstallSchemaInterface
                     $installer->getTable($reviewsTable)
                 )
                     ->addColumn(
-                        'id',
+                        'review_id',
                         Table::TYPE_INTEGER,
                         null,
                         [
@@ -55,7 +57,7 @@ class InstallSchema implements InstallSchemaInterface
                             'primary' => true,
                             'unsigned' => true,
                         ],
-                        'ID'
+                        'Table identifier'
                     )
                     ->addColumn(
                         'increment_id',
@@ -138,7 +140,7 @@ class InstallSchema implements InstallSchemaInterface
                         'created_at',
                         Table::TYPE_DATETIME,
                         null,
-                        ['default' => new \Zend_Db_Expr('CURRENT_TIMESTAMP')]
+                        ['default' => new Zend_Db_Expr('CURRENT_TIMESTAMP')]
                     );
                 $installer->getConnection()->createTable($table);
 
@@ -146,13 +148,13 @@ class InstallSchema implements InstallSchemaInterface
                     $installer->getTable($reviewsTable),
                     $installer->getIdxName(
                         $installer->getTable($reviewsTable),
-                        ['id'],
+                        ['review_id'],
                         AdapterInterface::INDEX_TYPE_UNIQUE
                     ),
-                    ['id'],
+                    ['review_id'],
                     AdapterInterface::INDEX_TYPE_UNIQUE
                 );
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->logger->error('InstallSchema Xvrmallafre_StoreReviews: ' . $e->getMessage());
             }
         }

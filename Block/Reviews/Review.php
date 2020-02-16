@@ -10,8 +10,10 @@ use Magento\Framework\View\Element\Template\Context;
  *
  * @package Xvrmallafre\StoreReviews\Block\Reviews
  */
-class ListReview extends Template
+class Review extends Template
 {
+
+    protected $hash;
 
     /**
      * Constructor
@@ -24,5 +26,7 @@ class ListReview extends Template
         array $data = []
     ) {
         parent::__construct($context, $data);
+
+        $this->hash = $this->getRequest()->getParam('hash');
     }
 }

@@ -2,12 +2,17 @@
 
 namespace Xvrmallafre\StoreReviews\Controller\Index;
 
+use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\View\Result\PageFactory;
+
 /**
  * Class Index
  *
  * @package Xvrmallafre\StoreReviews\Controller\Index
  */
-class Index extends \Magento\Framework\App\Action\Action
+class Index extends Action
 {
 
     protected $resultPageFactory;
@@ -15,12 +20,12 @@ class Index extends \Magento\Framework\App\Action\Action
     /**
      * Constructor
      *
-     * @param \Magento\Framework\App\Action\Context  $context
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
      */
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        Context $context,
+        PageFactory $resultPageFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
@@ -29,7 +34,7 @@ class Index extends \Magento\Framework\App\Action\Action
     /**
      * Execute view action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {

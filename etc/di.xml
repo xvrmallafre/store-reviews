@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Xvrmallafre\StoreReviews\Api\ReviewRepositoryInterface" type="Xvrmallafre\StoreReviews\Model\ReviewRepository"/>
+	<preference for="Xvrmallafre\StoreReviews\Api\Data\ReviewInterface" type="Xvrmallafre\StoreReviews\Model\Data\Review"/>
+	<preference for="Xvrmallafre\StoreReviews\Api\Data\ReviewSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Xvrmallafre\StoreReviews\Model\ResourceModel\Review\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">xvrmallafre_storereviews_review</argument>
+			<argument name="resourceModel" xsi:type="string">Xvrmallafre\StoreReviews\Model\ResourceModel\Review\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="xvrmallafre_storereviews_review_listing_data_source" xsi:type="string">Xvrmallafre\StoreReviews\Model\ResourceModel\Review\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>
