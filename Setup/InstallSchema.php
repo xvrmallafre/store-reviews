@@ -38,7 +38,7 @@ class InstallSchema implements InstallSchemaInterface
         ModuleContextInterface $context
     ) {
         $installer = $setup->startSetup();
-        $reviewsTable = 'store_reviews';
+        $reviewsTable = 'store_review';
 
         if (!$installer->tableExists($reviewsTable)) {
             $connection = $installer->getConnection();

@@ -5,7 +5,7 @@
 	<preference for="Xvrmallafre\StoreReviews\Api\Data\ReviewSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<virtualType name="Xvrmallafre\StoreReviews\Model\ResourceModel\Review\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
-			<argument name="mainTable" xsi:type="string">store_reviews</argument>
+			<argument name="mainTable" xsi:type="string">store_review</argument>
 			<argument name="resourceModel" xsi:type="string">Xvrmallafre\StoreReviews\Model\ResourceModel\Review\Collection</argument>
 		</arguments>
 	</virtualType>

@@ -22,7 +22,7 @@ class Review extends AbstractModel
 
     protected $dataObjectHelper;
 
-    protected $_eventPrefix = 'store_reviews';
+    protected $_eventPrefix = 'store_review';
 
     /**
      * @param Context $context

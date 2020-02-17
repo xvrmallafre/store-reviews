@@ -57,7 +57,7 @@ class Save extends Action
             try {
                 $model->save();
                 $this->messageManager->addSuccessMessage(__('You saved the Review.'));
-                $this->dataPersistor->clear('store_reviews');
+                $this->dataPersistor->clear('store_review');
 
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['review_id' => $model->getId()]);
@@ -69,7 +69,7 @@ class Save extends Action
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Review.'));
             }
 
-            $this->dataPersistor->set('store_reviews', $data);
+            $this->dataPersistor->set('store_review', $data);
             return $resultRedirect->setPath('*/*/edit', ['review_id' => $this->getRequest()->getParam('review_id')]);
         }
         return $resultRedirect->setPath('*/*/');

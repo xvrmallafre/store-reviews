@@ -59,13 +59,13 @@ class DataProvider extends AbstractDataProvider
         foreach ($items as $model) {
             $this->loadedData[$model->getId()] = $model->getData();
         }
-        $data = $this->dataPersistor->get('store_reviews');
+        $data = $this->dataPersistor->get('store_review');
 
         if (!empty($data)) {
             $model = $this->collection->getNewEmptyItem();
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();
-            $this->dataPersistor->clear('store_reviews');
+            $this->dataPersistor->clear('store_review');
         }
 
         return $this->loadedData;

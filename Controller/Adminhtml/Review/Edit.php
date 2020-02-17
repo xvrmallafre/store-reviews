@@ -54,7 +54,7 @@ class Edit extends \Xvrmallafre\StoreReviews\Controller\Adminhtml\Review
                 return $resultRedirect->setPath('*/*/');
             }
         }
-        $this->_coreRegistry->register('store_reviews', $model);
+        $this->_coreRegistry->register('store_review', $model);
 
         // 3. Build edit form
         /** @var Page $resultPage */
