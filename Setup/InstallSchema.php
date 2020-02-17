@@ -116,13 +116,6 @@ class InstallSchema implements InstallSchemaInterface
                         'Hash that allows the client to review the store'
                     )
                     ->addColumn(
-                        'store_id',
-                        Table::TYPE_INTEGER,
-                        10,
-                        ['nullable' => false],
-                        'Store ID'
-                    )
-                    ->addColumn(
                         'is_msg_sent',
                         Table::TYPE_BOOLEAN,
                         1,

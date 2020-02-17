@@ -113,6 +113,7 @@ class ReviewRepository implements ReviewRepositoryInterface
                 $exception->getMessage()
             ));
         }
+
         return $reviewModel->getDataModel();
     }
 
@@ -135,12 +136,14 @@ class ReviewRepository implements ReviewRepositoryInterface
         $searchResults->setSearchCriteria($criteria);
 
         $items = [];
+
         foreach ($collection as $model) {
             $items[] = $model->getDataModel();
         }
 
         $searchResults->setItems($items);
         $searchResults->setTotalCount($collection->getSize());
+
         return $searchResults;
     }
 
@@ -168,6 +171,7 @@ class ReviewRepository implements ReviewRepositoryInterface
                 $exception->getMessage()
             ));
         }
+
         return true;
     }
 
@@ -178,9 +182,11 @@ class ReviewRepository implements ReviewRepositoryInterface
     {
         $review = $this->reviewFactory->create();
         $this->resource->load($review, $reviewId);
+
         if (!$review->getId()) {
             throw new NoSuchEntityException(__('Review with id "%1" does not exist.', $reviewId));
         }
+
         return $review->getDataModel();
     }
 }

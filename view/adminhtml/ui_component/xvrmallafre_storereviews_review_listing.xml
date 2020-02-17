@@ -13,13 +13,6 @@
         <deps>
             <dep>xvrmallafre_storereviews_review_listing.xvrmallafre_storereviews_review_listing_data_source</dep>
         </deps>
-        <buttons>
-            <button name="add">
-                <url path="*/*/new"/>
-                <class>primary</class>
-                <label translate="true">Add new Review</label>
-            </button>
-        </buttons>
     </settings>
     <dataSource component="Magento_Ui/js/grid/provider" name="xvrmallafre_storereviews_review_listing_data_source">
         <settings>

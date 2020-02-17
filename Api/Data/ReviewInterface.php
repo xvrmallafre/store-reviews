@@ -17,8 +17,11 @@ interface ReviewInterface extends ExtensibleDataInterface
     const DELIVERY = 'delivery';
     const PRODUCT = 'product';
     const CUSTOMER_SUPPORT = 'customer_support';
+    const COMMENT = 'comment';
     const VISIBLE = 'visible';
     const HASH = 'hash';
+    const IS_MSG_SENT = 'is_msg_sent';
+    const SUBMITED_AT = 'submited_at';
 
     /**
      * Get increment_id
@@ -93,10 +96,10 @@ interface ReviewInterface extends ExtensibleDataInterface
 
     /**
      * Set comment
-     * @param string|null $review
+     * @param string|null $comment
      * @return ReviewInterface
      */
-    public function setComment($review);
+    public function setComment($comment);
 
     /**
      * Get hash
@@ -110,19 +113,6 @@ interface ReviewInterface extends ExtensibleDataInterface
      * @return ReviewInterface
      */
     public function setHash($hash);
-
-    /**
-     * Get store id
-     * @return int
-     */
-    public function getStoreId();
-
-    /**
-     * Set store id
-     * @param int $storeId
-     * @return ReviewInterface
-     */
-    public function setStoreId($storeId);
 
     /**
      * Get is msg sent
