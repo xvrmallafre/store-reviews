@@ -2,56 +2,151 @@
 
 namespace Xvrmallafre\StoreReviews\Api\Data;
 
+use Magento\Framework\Api\ExtensibleDataInterface;
+
 /**
  * Interface ReviewInterface
  *
  * @package Xvrmallafre\StoreReviews\Api\Data
  */
-interface ReviewInterface extends \Magento\Framework\Api\ExtensibleDataInterface
+interface ReviewInterface extends ExtensibleDataInterface
 {
 
-    const REVIEW = 'review';
     const REVIEW_ID = 'review_id';
+    const INCREMENT_ID = 'increment_id';
+    const DELIVERY = 'delivery';
+    const PRODUCT = 'product';
+    const CUSTOMER_SUPPORT = 'customer_support';
+    const VISIBLE = 'visible';
+    const HASH = 'hash';
+
+    /**
+     * Get increment_id
+     * @return string
+     */
+    public function getIncrementId();
+
+    /**
+     * Set increment_id
+     * @param string $incrementId
+     * @return ReviewInterface
+     */
+    public function setIncrementId($incrementId);
 
     /**
      * Get review_id
-     * @return string|null
+     * @return int
      */
     public function getReviewId();
 
     /**
      * Set review_id
-     * @param string $reviewId
-     * @return \Xvrmallafre\StoreReviews\Api\Data\ReviewInterface
+     * @param int $reviewId
+     * @return ReviewInterface
      */
     public function setReviewId($reviewId);
 
     /**
-     * Get review
+     * Get delivery
+     * @return int
+     */
+    public function getDelivery();
+
+    /**
+     * Set delivery
+     * @param int $delivery
+     * @return ReviewInterface
+     */
+    public function setDelivery($delivery);
+
+    /**
+     * Get product
+     * @return int
+     */
+    public function getProduct();
+
+    /**
+     * Set product
+     * @param int $product
+     * @return ReviewInterface
+     */
+    public function setProduct($product);
+
+    /**
+     * Get customer support
+     * @return int
+     */
+    public function getCustomerSupport();
+
+    /**
+     * Set product
+     * @param int $customerSupport
+     * @return ReviewInterface
+     */
+    public function setCustomerSupport($customerSupport);
+
+    /**
+     * Get comment
      * @return string|null
      */
-    public function getReview();
+    public function getComment();
 
     /**
-     * Set review
-     * @param string $review
-     * @return \Xvrmallafre\StoreReviews\Api\Data\ReviewInterface
+     * Set comment
+     * @param string|null $review
+     * @return ReviewInterface
      */
-    public function setReview($review);
+    public function setComment($review);
 
     /**
-     * Retrieve existing extension attributes object or create a new one.
-     * @return \Xvrmallafre\StoreReviews\Api\Data\ReviewExtensionInterface|null
+     * Get hash
+     * @return string
      */
-    public function getExtensionAttributes();
+    public function getHash();
 
     /**
-     * Set an extension attributes object.
-     * @param \Xvrmallafre\StoreReviews\Api\Data\ReviewExtensionInterface $extensionAttributes
-     * @return $this
+     * Set hash
+     * @param string $hash
+     * @return ReviewInterface
      */
-    public function setExtensionAttributes(
-        \Xvrmallafre\StoreReviews\Api\Data\ReviewExtensionInterface $extensionAttributes
-    );
+    public function setHash($hash);
+
+    /**
+     * Get store id
+     * @return int
+     */
+    public function getStoreId();
+
+    /**
+     * Set store id
+     * @param int $storeId
+     * @return ReviewInterface
+     */
+    public function setStoreId($storeId);
+
+    /**
+     * Get is msg sent
+     * @return bool
+     */
+    public function getIsMsgSent();
+
+    /**
+     * Set is msg sent
+     * @param bool $isMsgSent
+     * @return ReviewInterface
+     */
+    public function setIsMsgSent($isMsgSent);
+
+    /**
+     * Get submitted at
+     * @return string|null
+     */
+    public function getSumbitedAt();
+
+    /**
+     * Set is msg sent
+     * @param string|null $submitedAt
+     * @return ReviewInterface
+     */
+    public function setSumbitedAt($submitedAt);
 }
-

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Xvrmallafre_StoreReviews::storereviews" title="Store Reviews" module="Xvrmallafre_StoreReviews" sortOrder="30" resource="Xvrmallafre_StoreReviews::storereviews"/>
+        <add id="Xvrmallafre_StoreReviews::reviews" title="Reviews" module="Xvrmallafre_StoreReviews" sortOrder="10" action="xvrmallafre_storereviews/review" resource="Xvrmallafre_StoreReviews::storereviews" parent="Xvrmallafre_StoreReviews::storereviews"/>
+    </menu>
+</config>

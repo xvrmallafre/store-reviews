@@ -3,7 +3,6 @@
 namespace Xvrmallafre\StoreReviews\Model\Data;
 
 use Magento\Framework\Api\AbstractExtensibleObject;
-use Xvrmallafre\StoreReviews\Api\Data\ReviewExtensionInterface;
 use Xvrmallafre\StoreReviews\Api\Data\ReviewInterface;
 
 /**
@@ -51,25 +50,4 @@ class Review extends AbstractExtensibleObject implements ReviewInterface
     {
         return $this->setData(self::REVIEW, $review);
     }
-
-    /**
-     * Retrieve existing extension attributes object or create a new one.
-     * @return ReviewExtensionInterface|null
-     */
-    public function getExtensionAttributes()
-    {
-        return $this->_getExtensionAttributes();
-    }
-
-    /**
-     * Set an extension attributes object.
-     * @param ReviewExtensionInterface $extensionAttributes
-     * @return $this
-     */
-    public function setExtensionAttributes(
-        ReviewExtensionInterface $extensionAttributes
-    ) {
-        return $this->_setExtensionAttributes($extensionAttributes);
-    }
 }
-

@@ -2,25 +2,32 @@
 
 namespace Xvrmallafre\StoreReviews\Controller\Adminhtml\Review;
 
+use Exception;
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
+use Xvrmallafre\StoreReviews\Model\Review;
 
 /**
  * Class Save
  *
  * @package Xvrmallafre\StoreReviews\Controller\Adminhtml\Review
  */
-class Save extends \Magento\Backend\App\Action
+class Save extends Action
 {
 
     protected $dataPersistor;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+     * @param Context $context
+     * @param DataPersistorInterface $dataPersistor
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+        Context $context,
+        DataPersistorInterface $dataPersistor
     ) {
         $this->dataPersistor = $dataPersistor;
         parent::__construct($context);
@@ -29,17 +36,17 @@ class Save extends \Magento\Backend\App\Action
     /**
      * Save action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
         if ($data) {
             $id = $this->getRequest()->getParam('review_id');
 
-            $model = $this->_objectManager->create(\Xvrmallafre\StoreReviews\Model\Review::class)->load($id);
+            $model = $this->_objectManager->create(Review::class)->load($id);
             if (!$model->getId() && $id) {
                 $this->messageManager->addErrorMessage(__('This Review no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
@@ -50,7 +57,7 @@ class Save extends \Magento\Backend\App\Action
             try {
                 $model->save();
                 $this->messageManager->addSuccessMessage(__('You saved the Review.'));
-                $this->dataPersistor->clear('xvrmallafre_storereviews_review');
+                $this->dataPersistor->clear('store_reviews');
 
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['review_id' => $model->getId()]);
@@ -58,11 +65,11 @@ class Save extends \Magento\Backend\App\Action
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Review.'));
             }
 
-            $this->dataPersistor->set('xvrmallafre_storereviews_review', $data);
+            $this->dataPersistor->set('store_reviews', $data);
             return $resultRedirect->setPath('*/*/edit', ['review_id' => $this->getRequest()->getParam('review_id')]);
         }
         return $resultRedirect->setPath('*/*/');

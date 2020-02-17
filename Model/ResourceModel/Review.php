@@ -19,7 +19,7 @@ class Review extends AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('xvrmallafre_storereviews_review', 'review_id');
+        $this->_init('store_reviews', 'review_id');
     }
 }
 

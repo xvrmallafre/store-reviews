@@ -2,6 +2,11 @@
 
 namespace Xvrmallafre\StoreReviews\Controller\Adminhtml\Review;
 
+use Exception;
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
+use Xvrmallafre\StoreReviews\Model\Review;
+
 /**
  * Class Delete
  *
@@ -13,25 +18,25 @@ class Delete extends \Xvrmallafre\StoreReviews\Controller\Adminhtml\Review
     /**
      * Delete action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         // check if we know what should be deleted
         $id = $this->getRequest()->getParam('review_id');
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create(\Xvrmallafre\StoreReviews\Model\Review::class);
+                $model = $this->_objectManager->create(Review::class);
                 $model->load($id);
                 $model->delete();
                 // display success message
                 $this->messageManager->addSuccessMessage(__('You deleted the Review.'));
                 // go to grid
                 return $resultRedirect->setPath('*/*/');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // display error message
                 $this->messageManager->addErrorMessage($e->getMessage());
                 // go back to edit form

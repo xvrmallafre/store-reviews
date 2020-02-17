@@ -2,6 +2,12 @@
 
 namespace Xvrmallafre\StoreReviews\Api;
 
+use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Xvrmallafre\StoreReviews\Api\Data\ReviewInterface;
+use Xvrmallafre\StoreReviews\Api\Data\ReviewSearchResultsInterface;
+
 /**
  * Interface ReviewRepositoryInterface
  *
@@ -12,48 +18,48 @@ interface ReviewRepositoryInterface
 
     /**
      * Save Review
-     * @param \Xvrmallafre\StoreReviews\Api\Data\ReviewInterface $review
-     * @return \Xvrmallafre\StoreReviews\Api\Data\ReviewInterface
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @param ReviewInterface $review
+     * @return ReviewInterface
+     * @throws LocalizedException
      */
     public function save(
-        \Xvrmallafre\StoreReviews\Api\Data\ReviewInterface $review
+        ReviewInterface $review
     );
 
     /**
      * Retrieve Review
      * @param string $reviewId
-     * @return \Xvrmallafre\StoreReviews\Api\Data\ReviewInterface
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @return ReviewInterface
+     * @throws LocalizedException
      */
     public function get($reviewId);
 
     /**
      * Retrieve Review matching the specified criteria.
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return \Xvrmallafre\StoreReviews\Api\Data\ReviewSearchResultsInterface
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @param SearchCriteriaInterface $searchCriteria
+     * @return ReviewSearchResultsInterface
+     * @throws LocalizedException
      */
     public function getList(
-        \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
+        SearchCriteriaInterface $searchCriteria
     );
 
     /**
      * Delete Review
-     * @param \Xvrmallafre\StoreReviews\Api\Data\ReviewInterface $review
+     * @param ReviewInterface $review
      * @return bool true on success
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     public function delete(
-        \Xvrmallafre\StoreReviews\Api\Data\ReviewInterface $review
+        ReviewInterface $review
     );
 
     /**
      * Delete Review by ID
      * @param string $reviewId
      * @return bool true on success
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws NoSuchEntityException
+     * @throws LocalizedException
      */
     public function deleteById($reviewId);
 }

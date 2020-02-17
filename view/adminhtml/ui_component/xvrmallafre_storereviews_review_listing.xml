@@ -81,15 +81,69 @@
                 <label translate="true">ID</label>
             </settings>
         </column>
-        <column name="review">
+        <column name="delivery">
             <settings>
                 <filter>text</filter>
-                <label translate="true">review</label>
+                <label translate="true">Delivery</label>
                 <editor>
                     <editorType>text</editorType>
                     <validation>
-                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
                     </validation>
+                </editor>
+            </settings>
+        </column>
+        <column name="product">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Product</label>
+                <editor>
+                    <editorType>text</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                </editor>
+            </settings>
+        </column>
+        <column name="customer_support">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Customer Support</label>
+                <editor>
+                    <editorType>text</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                </editor>
+            </settings>
+        </column>
+        <column name="comment">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Comment</label>
+                <editor>
+                    <editorType>text</editorType>
+                </editor>
+            </settings>
+        </column>
+        <column name="visible" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <label translate="true">Is Visible</label>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <visible>true</visible>
+                <options>
+                    <option name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">No</item>
+                    </option>
+                    <option name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Yes</item>
+                    </option>
+                </options>
+                <editor>
+                    <editorType>select</editorType>
                 </editor>
             </settings>
         </column>

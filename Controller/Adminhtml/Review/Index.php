@@ -2,12 +2,17 @@
 
 namespace Xvrmallafre\StoreReviews\Controller\Adminhtml\Review;
 
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\View\Result\PageFactory;
+
 /**
  * Class Index
  *
  * @package Xvrmallafre\StoreReviews\Controller\Adminhtml\Review
  */
-class Index extends \Magento\Backend\App\Action
+class Index extends Action
 {
 
     protected $resultPageFactory;
@@ -15,12 +20,12 @@ class Index extends \Magento\Backend\App\Action
     /**
      * Constructor
      *
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        Context $context,
+        PageFactory $resultPageFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
@@ -29,13 +34,13 @@ class Index extends \Magento\Backend\App\Action
     /**
      * Index action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-            $resultPage->getConfig()->getTitle()->prepend(__("Review"));
-            return $resultPage;
+        $resultPage->getConfig()->getTitle()->prepend(__("Review"));
+        return $resultPage;
     }
 }
 
