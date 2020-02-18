@@ -1,9 +1,4 @@
 <h1><?= __('Reviews') ?></h1>
-<?php if ($block->getPagerHtml()) : ?>
-    <div class="order-products-toolbar toolbar bottom pager">
-        <?= $block->getPagerHtml() ?>
-    </div>
-<?php endif ?>
 <?php $reviews = $block->getReviews() ?>
 <?php if ($reviews && count($reviews)) : ?>
     <div class="table-wrapper reviews">
@@ -20,9 +15,9 @@
             <tbody>
                 <?php foreach ($reviews as $review) : ?>
                     <tr>
-                        <td class="col delivery"><?= $review->getDelivery() ?><i class="star"></i></td>
-                        <td class="col product"><?= $review->getProduct() ?><i class="star"></td>
-                        <td class="col customer-support"><?= $review->getCustomerSupport() ?><i class="star"></td>
+                        <td class="col delivery"><?= $review->getDelivery() ?><span class="star">★</span></td>
+                        <td class="col product"><?= $review->getProduct() ?><span class="star">★</td>
+                        <td class="col customer-support"><?= $review->getCustomerSupport() ?><span class="star">★</td>
                         <td class="col comment"><?= $review->getComment() ?></td>
                     </tr>
                 <?php endforeach ?>
