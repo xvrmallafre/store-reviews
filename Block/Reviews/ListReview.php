@@ -35,14 +35,23 @@ class ListReview extends Template
 
     public function getReviews()
     {
+        //TODO: This method should be part of a controller. It's cached.
         $page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
         $pageSize = ($this->getRequest()->getParam('limit')) ? $this->getRequest()->getParam('limit') : 10;
 
         $collection = $this->reviewCollection->create();
+        $collection->addFieldToFilter('visible', true);
+        $collection->addFieldToFilter('submited_at', ['neq' => 'NULL']);
         $collection->setPageSize($pageSize);
         $collection->setCurPage($page);
+        $collection->setOrder('review_id', $collection::SORT_ORDER_DESC);
 
         return $collection;
+    }
+
+    public function getPagerHtml()
+    {
+        return $this->getChildHtml('pager');
     }
 
     protected function _prepareLayout()
@@ -50,7 +59,7 @@ class ListReview extends Template
         parent::_prepareLayout();
 
         $pager = $this->getLayout()->createBlock(
-            'Magento\Theme\Block\Html\Pager',
+            'Magento\Catalog\Block\Product\Widget\Html\Pager',
             'review.history.pager'
         )->setAvailableLimit([10 => 10, 20 => 20, 50 => 50])
             ->setShowPerPage(true)->setCollection(
