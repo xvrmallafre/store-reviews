@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="storereviews_create_review" label="New Review" file="review.html" type="html" module="Xvrmallafre_StoreReviews" area="frontend"/>
+</config>

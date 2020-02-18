@@ -3,6 +3,9 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
+                <resource id="Xvrmallafre_StoreReviews::storereviews" title="Store Reviews" sortOrder="30">
+                    <resource id="Xvrmallafre_StoreReviews::reviews" title="Posts" sortOrder="10"/>
+                </resource>
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">

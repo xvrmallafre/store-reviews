@@ -1,0 +1,36 @@
+<h1><?= __('Reviews') ?></h1>
+<?php $reviews = $block->getReviews() ?>
+<?php if ($reviews && count($reviews)) : ?>
+    <div class="table-wrapper reviews">
+        <table class="data table table-order-items" id="reviews-table">
+            <caption class="table-caption"><?= __('Client Reviews') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col"><?= __('Delivery') ?></th>
+                    <th scope="col" class="col"><?= __('Product') ?></th>
+                    <th scope="col" class="col"><?= __('Customer Support') ?></th>
+                    <th scope="col" class="col"><?= __('Comment') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($reviews as $review) : ?>
+                    <tr>
+                        <td class="col delivery"><?= $review->getDelivery() ?><span class="star">★</span></td>
+                        <td class="col product"><?= $review->getProduct() ?><span class="star">★</td>
+                        <td class="col customer-support"><?= $review->getCustomerSupport() ?><span class="star">★</td>
+                        <td class="col comment"><?= $review->getComment() ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+    </div>
+<?php if ($block->getPagerHtml()) : ?>
+    <div class="order-products-toolbar toolbar bottom pager">
+        <?= $block->getPagerHtml() ?>
+    </div>
+<?php endif ?>
+<?php else : ?>
+<div class="message info empty">
+    <span><?= __('No reviews available') ?></span>
+</div>
+<?php endif ?>
