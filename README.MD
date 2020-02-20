@@ -20,7 +20,7 @@ The Magento administrator, will be allowed to hide or not, any of the reviews.
 
 ### Via Composer:
 
- - Install the module composer by running `composer require xvrmallafre/module-storereviews`
+ - Install the module composer by running `composer require xvrmallafre/module-storereviews:1.0.0`
  - enable the module by running `php bin/magento module:enable Xvrmallafre_StoreReviews`
  - apply database updates by running `php bin/magento setup:upgrade`
  - Flush the cache by running `php bin/magento cache:flush`
