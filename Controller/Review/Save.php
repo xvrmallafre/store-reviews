@@ -10,6 +10,7 @@ use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Xvrmallafre\StoreReviews\Api\Data\ReviewInterface;
+use Xvrmallafre\StoreReviews\Model\Config;
 use Xvrmallafre\StoreReviews\Model\ResourceModel\Review\CollectionFactory as ReviewCollectionFactory;
 
 /**
@@ -38,6 +39,10 @@ class Save extends Action
      * @var DateTime
      */
     protected $dateTime;
+    /**
+     * @var Config
+     */
+    protected $config;
 
     /**
      * Constructor
@@ -47,13 +52,15 @@ class Save extends Action
      * @param ReviewCollectionFactory $reviewCollection
      * @param StoreManagerInterface $storeManager
      * @param DateTime $dateTime
+     * @param Config $config
      */
     public function __construct(
         Context $context,
         UrlInterface $url,
         ReviewCollectionFactory $reviewCollection,
         StoreManagerInterface $storeManager,
-        DateTime $dateTime
+        DateTime $dateTime,
+        Config $config
     ) {
         parent::__construct($context);
 
@@ -61,6 +68,7 @@ class Save extends Action
         $this->reviewCollection = $reviewCollection;
         $this->storeManager = $storeManager;
         $this->dateTime = $dateTime;
+        $this->config = $config;
     }
 
     /**
@@ -71,46 +79,49 @@ class Save extends Action
      */
     public function execute()
     {
-        $post = $this->getRequest()->getPostValue();
         $baseUrl = $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_WEB);
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
 
+        if ($this->config->isEnabled()) {
+            $post = $this->getRequest()->getPostValue();
 
-        if (!$this->hasPostValidFields($post) || !$this->radioValuesAreInRange($post)) {
-            $this->messageManager->addErrorMessage(
-                __('An error has occurred. Please try again later.')
-            );
 
-            return $resultRedirect->setUrl($baseUrl);
-        }
+            if (!$this->hasPostValidFields($post) || !$this->radioValuesAreInRange($post)) {
+                $this->messageManager->addErrorMessage(
+                    __('An error has occurred. Please try again later.')
+                );
 
-        $collection = $this->reviewCollection->create();
-        $collection->addFieldToFilter(ReviewInterface::HASH, $post[ReviewInterface::HASH])
-            ->addFieldToFilter(ReviewInterface::IS_MSG_SENT, ['eq' => true])
-            ->addFieldToFilter(ReviewInterface::SUBMITTED_AT, ['null' => true]);
-
-        if ($collection->getSize() === 1) {
-            $review = $collection->getFirstItem();
-
-            if (!array_key_exists(ReviewInterface::COMMENT, $post)) {
-                $post[ReviewInterface::COMMENT] = null;
+                return $resultRedirect->setUrl($baseUrl);
             }
 
-            $post[ReviewInterface::SUBMITTED_AT] = $this->dateTime->gmtDate();
-            $post[ReviewInterface::VISIBLE] = true;
-            unset($post[ReviewInterface::HASH]);
-            unset($post['form_key']);
+            $collection = $this->reviewCollection->create();
+            $collection->addFieldToFilter(ReviewInterface::HASH, $post[ReviewInterface::HASH])
+                ->addFieldToFilter(ReviewInterface::IS_MSG_SENT, ['eq' => true])
+                ->addFieldToFilter(ReviewInterface::SUBMITTED_AT, ['null' => true]);
 
-            $originalData = $review->getOrigData();
-            $newData = array_merge($originalData, $post);
-            $review->setData($newData);
+            if ($collection->getSize() === 1) {
+                $review = $collection->getFirstItem();
 
-            $review->save();
+                if (!array_key_exists(ReviewInterface::COMMENT, $post)) {
+                    $post[ReviewInterface::COMMENT] = null;
+                }
+
+                $post[ReviewInterface::SUBMITTED_AT] = $this->dateTime->gmtDate();
+                $post[ReviewInterface::VISIBLE] = true;
+                unset($post[ReviewInterface::HASH]);
+                unset($post['form_key']);
+
+                $originalData = $review->getOrigData();
+                $newData = array_merge($originalData, $post);
+                $review->setData($newData);
+
+                $review->save();
+            }
+
+            $this->messageManager->addSuccessMessage(
+                __('You have successfully submitted your review. Thanks for your time.')
+            );
         }
-
-        $this->messageManager->addSuccessMessage(
-            __('You have successfully submitted your review. Thanks for your time.')
-        );
 
         return $resultRedirect->setUrl($baseUrl);
     }

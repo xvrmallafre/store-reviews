@@ -5,6 +5,7 @@ namespace Xvrmallafre\StoreReviews\Block\Reviews;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Xvrmallafre\StoreReviews\Api\Data\ReviewInterface;
+use Xvrmallafre\StoreReviews\Model\Config;
 
 /**
  * Class Index
@@ -14,16 +15,25 @@ use Xvrmallafre\StoreReviews\Api\Data\ReviewInterface;
 class Review extends Template
 {
     /**
+     * @var Config
+     */
+    protected $config;
+
+    /**
      * Constructor
      *
      * @param Context $context
      * @param array $data
+     * @param Config $config
      */
     public function __construct(
         Context $context,
-        array $data = []
+        array $data = [],
+        Config $config
     ) {
         parent::__construct($context, $data);
+
+        $this->config = $config;
     }
 
     /**
@@ -94,8 +104,7 @@ class Review extends Template
      */
     public function isCommentBoxEnabled()
     {
-        //TODO: get value from database
-        return true;
+        return $this->config->areCommentsEnabled();
     }
 
     /**
