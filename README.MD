@@ -1,6 +1,6 @@
 # Store Reviews for Magento 2
 
-    xvrmallafre/module-storereviews
+    xvrmallafre/module-store_reviews
 
 ## Requirements
 
