@@ -76,7 +76,7 @@ class Save extends Action
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
 
 
-        if (!$this->isPostValid($post)) {
+        if (!$this->hasPostValidFields($post) || !$this->radioValuesAreInRange($post)) {
             $this->messageManager->addErrorMessage(
                 __('An error has occurred. Please try again later.')
             );
@@ -108,7 +108,6 @@ class Save extends Action
             $review->save();
         }
 
-
         $this->messageManager->addSuccessMessage(
             __('You have successfully submitted your review. Thanks for your time.')
         );
@@ -120,7 +119,7 @@ class Save extends Action
      * @param array $post
      * @return bool
      */
-    protected function isPostValid(array $post)
+    protected function hasPostValidFields(array $post)
     {
         foreach ($this->getFieldsToValidate() as $fieldToValidate) {
             if (!array_key_exists($fieldToValidate, $post)) {
@@ -132,15 +131,40 @@ class Save extends Action
     }
 
     /**
+     * @param array $post
+     * @return bool
+     */
+    protected function radioValuesAreInRange(array $post)
+    {
+        $min = 1;
+        $max = 5;
+
+        foreach ($this->getRadioFields() as $radioField) {
+            if (!(($min <= $post[$radioField]) && ($post[$radioField] <= $max))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * @return array
      */
-    protected function getFieldsToValidate()
+    protected function getRadioFields()
     {
         return [
             ReviewInterface::PRODUCT,
             ReviewInterface::CUSTOMER_SUPPORT,
             ReviewInterface::DELIVERY,
-            ReviewInterface::HASH,
         ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getFieldsToValidate()
+    {
+        return array_merge($this->getRadioFields(), [ReviewInterface::HASH]);
     }
 }

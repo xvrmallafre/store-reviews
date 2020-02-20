@@ -4,7 +4,7 @@
     <body>
         <referenceContainer name="content">
             <block class="Xvrmallafre\StoreReviews\Block\Reviews\Review" name="xvrmallafre.reviews.form"
-                   template="Xvrmallafre_StoreReviews::reviews/review.phtml" />
+                   template="Xvrmallafre_StoreReviews::reviews/review.phtml" cacheable="false" />
         </referenceContainer>
     </body>
 </page>
