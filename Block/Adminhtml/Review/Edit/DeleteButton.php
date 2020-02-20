@@ -18,6 +18,7 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
     public function getButtonData()
     {
         $data = [];
+
         if ($this->getModelId()) {
             $data = [
                 'label' => __('Delete Review'),
@@ -28,6 +29,7 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
                 'sort_order' => 20,
             ];
         }
+
         return $data;
     }
 

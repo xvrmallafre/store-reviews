@@ -14,10 +14,19 @@ use Xvrmallafre\StoreReviews\Model\ResourceModel\Review\CollectionFactory;
 class DataProvider extends AbstractDataProvider
 {
 
+    /**
+     * @var \Xvrmallafre\StoreReviews\Model\ResourceModel\Review\Collection
+     */
     protected $collection;
 
+    /**
+     * @var DataPersistorInterface
+     */
     protected $dataPersistor;
 
+    /**
+     * @var
+     */
     protected $loadedData;
 
     /**
@@ -55,10 +64,13 @@ class DataProvider extends AbstractDataProvider
         if (isset($this->loadedData)) {
             return $this->loadedData;
         }
+
         $items = $this->collection->getItems();
+
         foreach ($items as $model) {
             $this->loadedData[$model->getId()] = $model->getData();
         }
+
         $data = $this->dataPersistor->get('store_review');
 
         if (!empty($data)) {

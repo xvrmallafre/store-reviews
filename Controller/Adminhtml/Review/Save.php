@@ -43,12 +43,15 @@ class Save extends Action
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
+
         if ($data) {
             $id = $this->getRequest()->getParam('review_id');
 
             $model = $this->_objectManager->create(Review::class)->load($id);
+
             if (!$model->getId() && $id) {
                 $this->messageManager->addErrorMessage(__('This Review no longer exists.'));
+
                 return $resultRedirect->setPath('*/*/');
             }
 
@@ -62,6 +65,7 @@ class Save extends Action
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['review_id' => $model->getId()]);
                 }
+
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
@@ -70,8 +74,10 @@ class Save extends Action
             }
 
             $this->dataPersistor->set('store_review', $data);
+
             return $resultRedirect->setPath('*/*/edit', ['review_id' => $this->getRequest()->getParam('review_id')]);
         }
+
         return $resultRedirect->setPath('*/*/');
     }
 }

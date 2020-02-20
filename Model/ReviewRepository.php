@@ -28,23 +28,56 @@ use Xvrmallafre\StoreReviews\Model\ResourceModel\Review\CollectionFactory as Rev
 class ReviewRepository implements ReviewRepositoryInterface
 {
 
+    /**
+     * @var ResourceReview
+     */
     protected $resource;
 
+    /**
+     * @var ReviewFactory
+     */
     protected $reviewFactory;
 
+    /**
+     * @var ReviewCollectionFactory
+     */
     protected $reviewCollectionFactory;
 
+    /**
+     * @var ReviewSearchResultsInterfaceFactory
+     */
     protected $searchResultsFactory;
 
+    /**
+     * @var DataObjectHelper
+     */
     protected $dataObjectHelper;
 
+    /**
+     * @var DataObjectProcessor
+     */
     protected $dataObjectProcessor;
 
+    /**
+     * @var ReviewInterfaceFactory
+     */
     protected $dataReviewFactory;
 
+    /**
+     * @var JoinProcessorInterface
+     */
     protected $extensionAttributesJoinProcessor;
+    /**
+     * @var ExtensibleDataObjectConverter
+     */
     protected $extensibleDataObjectConverter;
+    /**
+     * @var StoreManagerInterface
+     */
     private $storeManager;
+    /**
+     * @var CollectionProcessorInterface
+     */
     private $collectionProcessor;
 
     /**

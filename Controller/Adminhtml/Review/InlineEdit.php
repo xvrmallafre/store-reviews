@@ -17,7 +17,6 @@ use Xvrmallafre\StoreReviews\Model\Review;
  */
 class InlineEdit extends Action
 {
-
     protected $jsonFactory;
 
     /**
@@ -46,6 +45,7 @@ class InlineEdit extends Action
 
         if ($this->getRequest()->getParam('isAjax')) {
             $postItems = $this->getRequest()->getParam('items', []);
+
             if (!count($postItems)) {
                 $messages[] = __('Please correct the data sent.');
                 $error = true;
@@ -53,6 +53,7 @@ class InlineEdit extends Action
                 foreach (array_keys($postItems) as $modelid) {
                     /** @var Review $model */
                     $model = $this->_objectManager->create(Review::class)->load($modelid);
+
                     try {
                         $model->setData(array_merge($model->getData(), $postItems[$modelid]));
                         $model->save();
@@ -70,4 +71,3 @@ class InlineEdit extends Action
         ]);
     }
 }
-

@@ -47,13 +47,16 @@ class Edit extends \Xvrmallafre\StoreReviews\Controller\Adminhtml\Review
         // 2. Initial checking
         if ($id) {
             $model->load($id);
+
             if (!$model->getId()) {
                 $this->messageManager->addErrorMessage(__('This Review no longer exists.'));
                 /** @var Redirect $resultRedirect */
                 $resultRedirect = $this->resultRedirectFactory->create();
+
                 return $resultRedirect->setPath('*/*/');
             }
         }
+
         $this->_coreRegistry->register('store_review', $model);
 
         // 3. Build edit form
@@ -68,6 +71,7 @@ class Edit extends \Xvrmallafre\StoreReviews\Controller\Adminhtml\Review
             'Edit Review %1',
             $model->getId()
         ) : __('New Review'));
+
         return $resultPage;
     }
 }

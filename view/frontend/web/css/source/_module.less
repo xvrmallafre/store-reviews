@@ -1,8 +1,87 @@
+@star-content : "\2605";
+@color-star-filled: #FFD700;
+
+
 & when (@media-common = true) {
-    body.reviews-index-index {
-        .pager {
-            .pages {
-                text-align: right;
+    body {
+        &.reviews-index-index {
+            .pager {
+                .pages {
+                    text-align: right;
+                }
+            }
+        }
+
+        &.reviews-review-index {
+            .hide {
+                position: absolute;
+                left: -999999px;
+                top: -999999px;
+            }
+            .clear {
+                float: none;
+                clear: both;
+            }
+            .field-title {
+                margin-bottom: 5px;
+                margin-top: 15px;
+            }
+            .radio.landscape {
+                width: 90px;
+                unicode-bidi: bidi-override;
+                text-align: center;
+                position: relative;
+                >label {
+                    float: right;
+                    display: inline;
+                    padding: 0;
+                    margin: 0;
+                    position: relative;
+                    width: 1.1em;
+                    cursor: pointer;
+                    color: #000;
+                    &:hover {
+                        color: transparent;
+                        &~label {
+                            color: transparent;
+                            &:before {
+                                content: @star-content;
+                                position: absolute;
+                                left: 0;
+                                color: @color-star-filled;
+                            }
+                        }
+                        &:before {
+                            content: @star-content;
+                            position: absolute;
+                            left: 0;
+                            color: @color-star-filled;
+                        }
+                    }
+                }
+                >input.radio-btn {
+                    &:checked {
+                        &~label {
+                            color: transparent;
+                            &:before {
+                                content: @star-content;
+                                position: absolute;
+                                left: 0;
+                                color: @color-star-filled;
+                            }
+                        }
+                    }
+                }
+                >.mage-error {
+                    text-align: left;
+                    width: 200px
+                }
+            }
+            .textarea-field {
+                padding: 0 15px
+            }
+            .actions-toolbar {
+                margin-top: 20px;
             }
         }
     }

@@ -14,8 +14,11 @@ use Magento\Framework\Registry;
  */
 abstract class Review extends Action
 {
-
     const ADMIN_RESOURCE = 'Xvrmallafre_StoreReviews::review';
+
+    /**
+     * @var Registry
+     */
     protected $_coreRegistry;
 
     /**
