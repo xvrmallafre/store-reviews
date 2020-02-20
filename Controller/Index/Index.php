@@ -4,9 +4,11 @@ namespace Xvrmallafre\StoreReviews\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Result\PageFactory;
+use Xvrmallafre\StoreReviews\Model\Config;
 
 /**
  * Class Index
@@ -16,9 +18,20 @@ use Magento\Framework\View\Result\PageFactory;
 class Index extends Action
 {
 
+    /**
+     * @var PageFactory
+     */
     protected $resultPageFactory;
 
+    /**
+     * @var UrlInterface
+     */
     protected $url;
+
+    /**
+     * @var Config
+     */
+    protected $config;
 
     /**
      * Constructor
@@ -26,16 +39,19 @@ class Index extends Action
      * @param Context $context
      * @param PageFactory $resultPageFactory
      * @param UrlInterface $url
+     * @param Config $config
      */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
-        UrlInterface $url
+        UrlInterface $url,
+        Config $config
     ) {
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
 
         $this->url = $url;
+        $this->config = $config;
     }
 
     /**
@@ -45,12 +61,14 @@ class Index extends Action
      */
     public function execute()
     {
-        $norouteUrl = $this->url->getUrl('noroute');
+        $noRouteUrl = $this->url->getUrl('noroute');
 
-        //if (/* StoreConfig is reviews module disabled, redirect to 404 */) {
+        if ($this->config->isEnabled()) {
+            return $this->resultPageFactory->create();
+        }
 
-        //}
+        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
 
-        return $this->resultPageFactory->create();
+        return $resultRedirect->setUrl($noRouteUrl);
     }
 }
