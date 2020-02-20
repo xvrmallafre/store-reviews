@@ -33,6 +33,25 @@ class Review extends AbstractExtensibleObject implements ReviewInterface
     }
 
     /**
+     * Get increment_id
+     * @return string
+     */
+    public function getIncrementId()
+    {
+        return $this->_get(self::INCREMENT_ID);
+    }
+
+    /**
+     * Set increment_id
+     * @param string $incrementId
+     * @return ReviewInterface
+     */
+    public function setIncrementId($incrementId)
+    {
+        return $this->setData(self::INCREMENT_ID, $incrementId);
+    }
+
+    /**
      * Get delivery
      * @return int
      */
@@ -150,18 +169,37 @@ class Review extends AbstractExtensibleObject implements ReviewInterface
      * Get submitted at
      * @return string|null
      */
-    public function getSumbitedAt()
+    public function getSubmittedAt()
     {
-        return $this->_get(self::SUBMITED_AT);
+        return $this->_get(self::SUBMITTED_AT);
     }
 
     /**
      * Set is msg sent
-     * @param string|null $submitedAt
+     * @param string|null $submittedAt
      * @return ReviewInterface
      */
-    public function setSumbitedAt($submitedAt)
+    public function setSubmittedAt($submittedAt)
     {
-        return $this->setData(self::SUBMITED_AT, $submitedAt);
+        return $this->setData(self::SUBMITTED_AT, $submittedAt);
+    }
+
+    /**
+     * Get visible
+     * @return bool|int
+     */
+    public function getVisible()
+    {
+        return $this->_get(self::VISIBLE);
+    }
+
+    /**
+     * Get visible
+     * @param bool|int $visible
+     * @return ReviewInterface
+     */
+    public function setVisible($visible)
+    {
+        return $this->setData(self::VISIBLE, $visible);
     }
 }

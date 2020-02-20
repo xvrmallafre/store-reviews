@@ -16,4 +16,7 @@
 			</argument>
 		</arguments>
 	</type>
+    <type name="Magento\Sales\Model\ResourceModel\Order">
+        <plugin name="order_state_plugin" type="Xvrmallafre\StoreReviews\Plugin\OrderStatePlugin"/>
+    </type>
 </config>

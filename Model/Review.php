@@ -18,10 +18,19 @@ use Xvrmallafre\StoreReviews\Model\ResourceModel\Review\Collection;
 class Review extends AbstractModel
 {
 
+    /**
+     * @var ReviewInterfaceFactory
+     */
     protected $reviewDataFactory;
 
+    /**
+     * @var DataObjectHelper
+     */
     protected $dataObjectHelper;
 
+    /**
+     * @var string
+     */
     protected $_eventPrefix = 'store_review';
 
     /**

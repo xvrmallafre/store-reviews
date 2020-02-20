@@ -26,6 +26,7 @@ class Delete extends \Xvrmallafre\StoreReviews\Controller\Adminhtml\Review
         $resultRedirect = $this->resultRedirectFactory->create();
         // check if we know what should be deleted
         $id = $this->getRequest()->getParam('review_id');
+
         if ($id) {
             try {
                 // init model and delete
@@ -43,6 +44,7 @@ class Delete extends \Xvrmallafre\StoreReviews\Controller\Adminhtml\Review
                 return $resultRedirect->setPath('*/*/edit', ['review_id' => $id]);
             }
         }
+
         // display error message
         $this->messageManager->addErrorMessage(__('We can\'t find a Review to delete.'));
         // go to grid

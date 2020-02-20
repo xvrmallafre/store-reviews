@@ -21,7 +21,7 @@ interface ReviewInterface extends ExtensibleDataInterface
     const VISIBLE = 'visible';
     const HASH = 'hash';
     const IS_MSG_SENT = 'is_msg_sent';
-    const SUBMITED_AT = 'submited_at';
+    const SUBMITTED_AT = 'submitted_at';
 
     /**
      * Get increment_id
@@ -116,13 +116,13 @@ interface ReviewInterface extends ExtensibleDataInterface
 
     /**
      * Get is msg sent
-     * @return bool
+     * @return bool|int
      */
     public function getIsMsgSent();
 
     /**
      * Set is msg sent
-     * @param bool $isMsgSent
+     * @param bool|int $isMsgSent
      * @return ReviewInterface
      */
     public function setIsMsgSent($isMsgSent);
@@ -131,12 +131,25 @@ interface ReviewInterface extends ExtensibleDataInterface
      * Get submitted at
      * @return string|null
      */
-    public function getSumbitedAt();
+    public function getSubmittedAt();
 
     /**
      * Set is msg sent
-     * @param string|null $submitedAt
+     * @param string|null $submittedAt
      * @return ReviewInterface
      */
-    public function setSumbitedAt($submitedAt);
+    public function setSubmittedAt($submittedAt);
+
+    /**
+     * Get visible
+     * @return bool|int
+     */
+    public function getVisible();
+
+    /**
+     * Get visible
+     * @param bool|int $visible
+     * @return ReviewInterface
+     */
+    public function setVisible($visible);
 }

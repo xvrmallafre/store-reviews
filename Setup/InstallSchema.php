@@ -123,7 +123,7 @@ class InstallSchema implements InstallSchemaInterface
                         'Check when the email has been sent to the client'
                     )
                     ->addColumn(
-                        'submited_at',
+                        'submitted_at',
                         Table::TYPE_DATETIME,
                         255,
                         ['nullable' => true],
