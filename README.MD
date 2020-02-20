@@ -4,7 +4,7 @@
 
 ## Requirements
 
- - PHP: 7.1.33~
+ - PHP: 7.2.20~
  - Magento: 2.3.4~
 
 `Only tested with versions shown above`
@@ -12,7 +12,7 @@
 ## Main Functionalities
 
 This loyalty module provides new URLs to the frontend of the platform, that will allow the store to be reviewed, and see those reviews.
-After X days (configurable value in backend), the customer which did a purchase in the store, will get an email with a custom link, that will redirect him to an URL to rate some aspects from that purchase.
+After X days (configurable value in backend), the customer which did a purchase in the store, and the status for the order is complete, will get an email with a custom link, that will redirect him to an URL to rate some aspects from that purchase.
 The Magento administrator, will be allowed to hide or not, any of the reviews.
 
 
@@ -50,3 +50,4 @@ The Magento administrator, will be allowed to hide or not, any of the reviews.
 
  - Template
     - storereviews_create_review > This email will arrive to the user which creates the order.
+
