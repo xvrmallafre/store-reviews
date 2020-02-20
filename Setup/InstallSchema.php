@@ -2,12 +2,14 @@
 
 namespace Xvrmallafre\StoreReviews\Setup;
 
+use Exception;
 use Magento\Framework\DB\Adapter\AdapterInterface;
 use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 use Psr\Log\LoggerInterface;
+use Zend_Db_Expr;
 
 /**
  * Class InstallSchema
@@ -36,7 +38,7 @@ class InstallSchema implements InstallSchemaInterface
         ModuleContextInterface $context
     ) {
         $installer = $setup->startSetup();
-        $reviewsTable = 'store_reviews';
+        $reviewsTable = 'store_review';
 
         if (!$installer->tableExists($reviewsTable)) {
             $connection = $installer->getConnection();
@@ -46,7 +48,7 @@ class InstallSchema implements InstallSchemaInterface
                     $installer->getTable($reviewsTable)
                 )
                     ->addColumn(
-                        'id',
+                        'review_id',
                         Table::TYPE_INTEGER,
                         null,
                         [
@@ -55,7 +57,7 @@ class InstallSchema implements InstallSchemaInterface
                             'primary' => true,
                             'unsigned' => true,
                         ],
-                        'ID'
+                        'Table identifier'
                     )
                     ->addColumn(
                         'increment_id',
@@ -114,13 +116,6 @@ class InstallSchema implements InstallSchemaInterface
                         'Hash that allows the client to review the store'
                     )
                     ->addColumn(
-                        'store_id',
-                        Table::TYPE_INTEGER,
-                        10,
-                        ['nullable' => false],
-                        'Store ID'
-                    )
-                    ->addColumn(
                         'is_msg_sent',
                         Table::TYPE_BOOLEAN,
                         1,
@@ -128,7 +123,7 @@ class InstallSchema implements InstallSchemaInterface
                         'Check when the email has been sent to the client'
                     )
                     ->addColumn(
-                        'submited_at',
+                        'submitted_at',
                         Table::TYPE_DATETIME,
                         255,
                         ['nullable' => true],
@@ -138,7 +133,7 @@ class InstallSchema implements InstallSchemaInterface
                         'created_at',
                         Table::TYPE_DATETIME,
                         null,
-                        ['default' => new \Zend_Db_Expr('CURRENT_TIMESTAMP')]
+                        ['default' => new Zend_Db_Expr('CURRENT_TIMESTAMP')]
                     );
                 $installer->getConnection()->createTable($table);
 
@@ -146,13 +141,13 @@ class InstallSchema implements InstallSchemaInterface
                     $installer->getTable($reviewsTable),
                     $installer->getIdxName(
                         $installer->getTable($reviewsTable),
-                        ['id'],
+                        ['review_id'],
                         AdapterInterface::INDEX_TYPE_UNIQUE
                     ),
-                    ['id'],
+                    ['review_id'],
                     AdapterInterface::INDEX_TYPE_UNIQUE
                 );
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->logger->error('InstallSchema Xvrmallafre_StoreReviews: ' . $e->getMessage());
             }
         }

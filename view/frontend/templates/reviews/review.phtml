@@ -1,0 +1,38 @@
+<div class="form">
+    <form action="<?= $block->getSubmitPostUrl() ?>" method="POST" data-mage-init='{"validation":{}}'>
+        <?php foreach ($block->getRadioOptions() as $option) : ?>
+            <div class="field-title"><?= $block->escapeHtml(__($block->getFieldTitle($option))) ?></div>
+            <div class="radio landscape">
+                <?php foreach ($block->getRadioIdAndValue($option) as $item) : ?>
+                    <input id="<?= $item['id'] ?>"
+                           name="<?= $option ?>"
+                           type="radio"
+                           data-validate="{'validate-one-required-by-name':true}"
+                           data-selector="<?= $option ?>"
+                           value="<?= $item['value'] ?>"
+                           class="radio-btn hide" />
+                    <label for="<?= $item['id'] ?>" >☆</label>
+                <?php endforeach ?>
+                <div class="clear"></div>
+            </div>
+        <?php endforeach ?>
+        <?php if ($block->isCommentBoxEnabled()) : ?>
+        <div class="field-title"><?= $block->escapeHtml(__('Do you want to explain us something?')) ?></div>
+        <div class="textarea-field">
+            <textarea name="<?= $block->getCommentBoxName() ?>"
+                      cols="30"
+                      rows="10"
+                      placeholder="<?= $block->escapeHtml(__('Tell us what you think')) ?>"
+                      data-validate='{"maxlength": 255}'></textarea>
+        </div>
+        <?php endif ?>
+        <input type="hidden" value="<?= $block->getHashParam() ?>" name="hash">
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" class="action submit primary">
+                    <span><?= $block->escapeHtml(__('Send')) ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
